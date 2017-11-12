@@ -14,15 +14,15 @@ data = pd.read_csv('inputs.csv')
 data = data[['text','sentiment']]
 
 data = data[data.sentiment != "Neutral"]
-print(data['text'][0:5])
+# print(data['text'][0:5])
 data['text'] = data['text'].apply(lambda x: str(x).lower())
-print("------------------")
+# print("------------------")
 data['text'] = data['text'].apply((lambda x: re.sub('[^a-zA-z0-9\s]','',x)))
-print(data['text'][0:5])
+# print(data['text'][0:5])
 # replace all special chars with null
 
-print(data[ data['sentiment'] == 'pos'].size)
-print(data[ data['sentiment'] == 'neg'].size)
+# print(data[ data['sentiment'] == 'pos'].size)
+# print(data[ data['sentiment'] == 'neg'].size)
 
 i = 0
 for idx,row in data.iterrows():
@@ -33,7 +33,7 @@ tokenizer = Tokenizer(nb_words=max_fatures, split=' ')
 tokenizer.fit_on_texts(data['text'].values)
 X = tokenizer.texts_to_sequences(data['text'].values)
 X = pad_sequences(X)
-print(X)
+# print(X)
 
 embed_dim = 128
 lstm_out = 196
@@ -46,7 +46,7 @@ model.compile(loss = 'categorical_crossentropy', optimizer='adam',metrics = ['ac
 print(model.summary())
 
 Y = pd.get_dummies(data['sentiment']).values # one hot
-print(Y)
+# print(Y)
 X_train, X_test, Y_train, Y_test = train_test_split(X,Y, test_size = 0.33, random_state = 42)
 print(X_train.shape,Y_train.shape)
 print(X_test.shape,Y_test.shape)
@@ -82,5 +82,4 @@ for x in range(len(X_validate)):
 
 print("pos_acc", pos_correct/pos_cnt*100, "%")
 print("neg_acc", neg_correct/neg_cnt*100, "%")
-
 
