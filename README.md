@@ -2,9 +2,12 @@
 AI Lab Evaluation Repository
 
 
-RNN Sentiment Analyzer for mobile phone reviews
+<b>RNN Sentiment Analyzer for Mobile Phone Review Summaries</b>
 
 Built using [Keras](https://keras.io/)
+<hr>
+<b>Results:</b>
+
 
 
 
